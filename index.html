@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Test task Yurchenko</title>
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Test task Yurchenko</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
 
-	<!-- Header -->
-	<header class="header" id="header">
-		<div class="inner-container">
-			<div class="burger-btn" id="burger-icon">
-				<span class="burger-btn-component"></span>
+		<!-- Header -->
+		<header class="header" id="header">
+			<div class="inner-container">
+				<div class="burger-btn show" id="burger-icon">
+					<span class="burger-btn-component"></span>
+				</div>
+				<nav class="nav-header" id="nav-header">
+					<div class="btn-close hide" id="burger-icon-close">
+						<span class="btn-close-component"></span>
+					</div>
+					<ul class="nav-list">
+						<li class="nav-list-item"><a href="#" class="nav-list-item-link"></a></li>
+						<li class="nav-list-item second-item"><a href="#" class="nav-list-item-link"></a></li>
+						<li class="nav-list-item third-item"><a href="#" class="nav-list-item-link"></a></li>
+					</ul>
+				</nav>
 			</div>
-			<nav class="nav-header">
-				<ul class="nav-list">
-					<li class="nav-list-item"><a href="#" class="nav-list-item-link"></a></li>
-					<li class="nav-list-item second-item"><a href="#" class="nav-list-item-link"></a></li>
-					<li class="nav-list-item third-item"><a href="#" class="nav-list-item-link"></a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<script>
-	    let burger = document.querySelector("#burger-icon"),
-	    header = document.querySelector("#header");
-	    burger.onclick = function() {
-	        header.classList.toggle("menu-open");
-	    }
-	</script>
-</body>
+		</header>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+		<script>
+			$( document ).ready(function(){ 
+		  		$( ".hide" ).click(function(){ 
+		    		$( ".nav-header" ).hide();
+		    		$( ".header" ).removeClass("menu-open"); 
+		  		});
+		  		$( ".show" ).click(function(){ 
+		    		$( ".nav-header" ).show(); 
+		    		$( ".header" ).addClass("menu-open"); 
+		  		});
+			});
+		</script>
+		<script>
+			$(document).mouseup(function (e){
+				var modalctr = $("#nav-header");
+				var modal = $("#nav-header");
+				var burger = $("#burger");
+				if (!modal.is(e.target) && modal.has(e.target).length === 0){
+					modal.hide();
+					$( ".header" ).removeClass("menu-open"); 
+				}
+			});
+		</script>
+	</body>
 </html>

@@ -2,6 +2,30 @@ body {
 	background: #000;
 }
 
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+@mixin transition($property) {
+  -webkit-transition: $property;
+  -ms-transition: $property;
+  transition: $property;
+}
+
+@mixin transition-duration($property) {
+  -webkit-transition-duration: $property;
+  -ms-transition-duration: $property;
+  transition-duration: $property;
+}
+
+@mixin transition-property($property) {
+  -webkit-transition-property: $property;
+  -ms-transition-property: $property;
+  transition-property: $property;
+}
+
 %inner-wrapper {
 	width: 1020px;
 	margin: 0 auto;
@@ -64,13 +88,43 @@ body {
 			z-index: 1;
 			right: 0;
 			top: -290px;
-			transition-duration: 2.5s;
-			transition-property: top;
+			@include transition-duration(2.5s);
+			@include transition-property(top);
+			display: flex;
+			flex-direction: column;
 
 			border: 1px solid #FF00FF;
 			width: 200px;
 			padding: 20px;
 			box-sizing: border-box;
+
+			.btn-close {
+				width: 24px;
+				height: 30px;
+				align-self: flex-end;
+				margin-bottom: 10px;
+				cursor: pointer;
+
+				&:hover {
+					opacity: 0.7;
+				}
+
+				&-component {
+					@extend %burger;
+					@include transform(rotate(45deg));
+					transform-origin: top left;
+
+					&::after {
+						@extend %burger;
+						position: absolute;
+						top: 0;
+						left: 0;
+						@include transform(rotate(-90deg));	
+					}
+
+				}
+			}
+
 
 			.nav-list {
 				height: 350px;
@@ -80,7 +134,7 @@ body {
 				justify-content: space-between;
 
 				&-item {
-					width: 80%;
+					width: 100%;
 				}
 
 				&-item-link {
@@ -94,7 +148,7 @@ body {
 				&-item-link:hover {
 					border: 1px solid #fff;
 					box-shadow:  0 0 3px 2px #fff;
-					transition: 0.5s;
+					@include transition(0.5s);
 				}
 
 				.second-item {
@@ -115,24 +169,4 @@ body {
 		visibility: visible;
 		top: 120px;
 	}
-
-	.burger-btn {
-
-			&-component {
-				transform: rotate(45deg);
-				transform-origin: top left;
-
-				&::before {
-					transform: rotate(-90deg);
-					top: 0;
-					
-				}
-
-				&::after {
-					display: none;
-				}
-			}
-
-
-		}
 }
